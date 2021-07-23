@@ -8,7 +8,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -35,10 +35,10 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.its_quran"
-        minSdkVersion 20 //17
-        targetSdkVersion 30
+        minSdkVersion 19 //17
+        targetSdkVersion 28
         multiDexEnabled true  //Added
-
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -48,9 +48,17 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+            minifyEnabled true // Add these lines
+            shrinkResources true // Add these lines
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt') // Add these lines
+
+        }
+        debug{
+            minifyEnabled true
         }
     }
 }
+
 
 flutter {
     source '../..'
@@ -60,6 +68,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation "androidx.multidex:multidex:2.0.1"  //Added
-
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }

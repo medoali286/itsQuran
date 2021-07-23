@@ -15,6 +15,11 @@ class _FullCategScreenState extends State<FullCategScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    ItemType type= ModalRoute.of(context).settings.arguments;
+
+
     return TemplateScreen(
       title: 'العنوان من المودال راوت',
       actions: [
@@ -165,7 +170,7 @@ class _FullCategScreenState extends State<FullCategScreen> {
           ),
         )
       ],
-      body: SheikhScreenTabContent(itemsType: ItemType.audio),
+      body: SheikhScreenTabContent(itemsType: type,author: "1",),
     );
   }
 }

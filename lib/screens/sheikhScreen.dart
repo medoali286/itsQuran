@@ -54,10 +54,13 @@ class _SheikhScreenState extends State<SheikhScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String author=ModalRoute.of(context).settings.arguments;
+
+
     return SafeArea(
       child: DefaultTabController(
         initialIndex: 0,
-        length: 5,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             leading: BackArrow(),
@@ -76,8 +79,8 @@ class _SheikhScreenState extends State<SheikhScreen> {
               tabs: [
                 Text("دروس ومحاضرات"),
                 Text("الكتب"),
-                Text("المقالات"),
-                Text("البحوث"),
+                // Text("المقالات"),
+                // Text("البحوث"),
                 Text("دورات مصورة"),
               ],
               isScrollable: true,
@@ -178,11 +181,11 @@ class _SheikhScreenState extends State<SheikhScreen> {
           ),
           body: TabBarView(
             children: [
-              SheikhScreenTabContent(itemsType: ItemType.video),
-              SheikhScreenTabContent(itemsType: ItemType.book),
-              SheikhScreenTabContent(itemsType: ItemType.article),
-              SheikhScreenTabContent(itemsType: ItemType.article),
-              SheikhScreenTabContent(itemsType: ItemType.audio),
+              SheikhScreenTabContent(itemsType: ItemType.video,author: author,),
+              SheikhScreenTabContent(itemsType: ItemType.book,author: author,),
+              // SheikhScreenTabContent(itemsType: ItemType.article),
+              // SheikhScreenTabContent(itemsType: ItemType.article),
+              SheikhScreenTabContent(itemsType: ItemType.audio,author: author,),
             ],
           ),
         ),

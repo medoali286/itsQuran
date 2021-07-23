@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:its_quran/Provider/home_provider.dart';
-import 'package:its_quran/services/articles_api.dart';
-import 'package:its_quran/services/audios_api.dart';
-import 'package:its_quran/services/book_api.dart';
-import 'package:its_quran/services/videos_api.dart';
+
+
+import 'package:its_quran/services/get_api_data.dart';
+
+
 import 'package:its_quran/widgets/CategoryHeaderRow.dart';
 import 'package:its_quran/widgets/HomeScreenSection.dart';
 import 'package:its_quran/widgets/appDrawer.dart';
 import 'package:its_quran/widgets/searchButton.dart';
-import 'package:provider/provider.dart';
+
 
 
 
 class HomeScreen extends StatelessWidget {
-final  Articles articles = Articles();
- final GetBooks books = GetBooks();
- final GetVideos videos = GetVideos();
- final GetAudios audios = GetAudios();
+
+final GetAPIData apiData=GetAPIData();
 
   final GlobalKey scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -79,7 +77,7 @@ final  Articles articles = Articles();
 //               ),
               FutureBuilder(
                 future:
-                    videos.getData(pageNumber: "2", perPage: Provider.of<HomeProvider>(context).videosPerPage, author: "1"),
+                    apiData.getData(pageNumber: "1", perPage: "10", author: "1",type: "videos"),
                 builder: (c, snapShot) {
                   if (!snapShot.hasData) {
                     return Center(
@@ -91,7 +89,8 @@ final  Articles articles = Articles();
                       list: snapShot.data,
                       itemType: ItemType.video,
                       categoryHeaderRow: CategoryHeaderRow(
-                        type: "videos",
+
+                        type: ItemType.video,
                         title: 'فيديوهات',
                         caption: 'جميع المحاضرات المرتبة',
                       ),
@@ -102,7 +101,7 @@ final  Articles articles = Articles();
 
               FutureBuilder(
                 future:
-                    audios.getData(pageNumber: "8", perPage: Provider.of<HomeProvider>(context).audiosPrePage, author: "1"),
+                apiData.getData(pageNumber: "2", perPage: "10", author: "1",type: "audios"),
                 builder: (c, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(
@@ -110,13 +109,14 @@ final  Articles articles = Articles();
                       color: Colors.yellow,
                     ));
                   } else {
-                    print(snapshot.data[0]);
+                    // print(snapshot.data[0]);
 
                     return HomeScreenSection(
                       list: snapshot.data,
                       itemType: ItemType.audio,
                       categoryHeaderRow: CategoryHeaderRow(
-                        type: "audios",
+
+                        type: ItemType.audio,
                         title: 'الصوتيات',
                         caption: 'جميع المقاطع الصوتية',
                       ),
@@ -127,7 +127,7 @@ final  Articles articles = Articles();
 
               FutureBuilder(
                 future:
-                    books.getData(pageNumber: "2", perPage: Provider.of<HomeProvider>(context).booksPrePage, author: "1"),
+                apiData.getData(pageNumber: "1", perPage: "10", author: "1",type: "books"),
                 builder: (c, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(
@@ -139,7 +139,8 @@ final  Articles articles = Articles();
                       list: snapshot.data,
                       itemType: ItemType.book,
                       categoryHeaderRow: CategoryHeaderRow(
-                        type: "books",
+
+                        type: ItemType.book,
                         title: 'الكتب',
                         caption: 'الكتب المضافة مؤخراً',
                       ),
@@ -148,28 +149,29 @@ final  Articles articles = Articles();
                 },
               ),
 
-              FutureBuilder(
-                future: articles.getData(
-                    pageNumber: "2", perPage: Provider.of<HomeProvider>(context).articlesPerPage, author: "1"),
-                builder: (c, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.yellow,
-                      ),
-                    );
-                  } else {
-                    return HomeScreenSection(
-                      list: snapshot.data,
-                      categoryHeaderRow: CategoryHeaderRow(
-                        type: "articles",
-                        title: 'المقالات',
-                        caption: 'جميع المقالات المضافة',
-                      ),
-                    );
-                  }
-                },
-              ),
+              // FutureBuilder(
+              //   future: apiData.getData(
+              //       pageNumber: "2", perPage: "10", author: "1",type: "articles"),
+              //   builder: (c, snapshot) {
+              //     if (!snapshot.hasData) {
+              //       return Center(
+              //         child: CircularProgressIndicator(
+              //           color: Colors.yellow,
+              //         ),
+              //       );
+              //     } else {
+              //       return HomeScreenSection(
+              //         list: snapshot.data,
+              //         categoryHeaderRow: CategoryHeaderRow(
+              //
+              //           type: ItemType.article,
+              //           title: 'المقالات',
+              //           caption: 'جميع المقالات المضافة',
+              //         ),
+              //       );
+              //     }
+              //   },
+              // ),
             ],
           ),
         ),

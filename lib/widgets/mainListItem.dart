@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:its_quran/screens/web_view_screen.dart';
 import 'package:its_quran/widgets/HomeScreenSection.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainListItem extends StatelessWidget {
   final String title;
@@ -41,7 +43,17 @@ class MainListItem extends StatelessWidget {
         break;
     }
     return InkWell(
-      onTap: () {},
+      onTap: () {
+
+        if(itemType==ItemType.book){
+       _openLink(link: link);
+
+
+        }else {
+          Navigator.of(context).pushNamed(
+              WebViewScreen.routeName, arguments: link);
+        }
+          },
       child: Container(
         // color: Colors.red,
         width: 146.0,
@@ -80,8 +92,8 @@ class MainListItem extends StatelessWidget {
                           scale: 0.80,
                         )),
                   if (this.isAudio)
-                    Image.asset(
-                      'assets/tasoundact.png',
+                    Image.network(
+                      imgUrl,
                       scale: 0.55,
                     ),
                 ],
@@ -106,51 +118,51 @@ class MainListItem extends StatelessWidget {
                     SizedBox(
                       height: 5.0,
                     ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Container(
-                            height: 30.0,
-                            alignment: Alignment.center,
-                            child: Text(
-                              'سورة الفاتحة',
-                              style:
-                                  Theme.of(context).textTheme.caption.copyWith(
-                                        fontSize: 10.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(23.0),
-                              border: Border.all(
-                                color: Theme.of(context).primaryColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5.0,
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 30.0,
-                            alignment: Alignment.center,
-                            child: Text(
-                              '10:15',
-                              style: GoogleFonts.openSans(
-                                textStyle: Theme.of(context).textTheme.caption,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).accentColor,
-                              borderRadius: BorderRadius.circular(23.0),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: <Widget>[
+                    //     Expanded(
+                    //       child: Container(
+                    //         height: 30.0,
+                    //         alignment: Alignment.center,
+                    //         child: Text(
+                    //           'سورة الفاتحة',
+                    //           style:
+                    //               Theme.of(context).textTheme.caption.copyWith(
+                    //                     fontSize: 10.0,
+                    //                     fontWeight: FontWeight.w500,
+                    //                   ),
+                    //         ),
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(23.0),
+                    //           border: Border.all(
+                    //             color: Theme.of(context).primaryColor,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     SizedBox(
+                    //       width: 5.0,
+                    //     ),
+                    //     Expanded(
+                    //       child: Container(
+                    //         height: 30.0,
+                    //         alignment: Alignment.center,
+                    //         child: Text(
+                    //           '10:15',
+                    //           style: GoogleFonts.openSans(
+                    //             textStyle: Theme.of(context).textTheme.caption,
+                    //             fontSize: 10,
+                    //             fontWeight: FontWeight.w800,
+                    //           ),
+                    //         ),
+                    //         decoration: BoxDecoration(
+                    //           color: Theme.of(context).accentColor,
+                    //           borderRadius: BorderRadius.circular(23.0),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               )
@@ -159,4 +171,10 @@ class MainListItem extends StatelessWidget {
       ),
     );
   }
+
+  _openLink({@required String link}) async {
+    String _url = link;
+    await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+  }
+
 }

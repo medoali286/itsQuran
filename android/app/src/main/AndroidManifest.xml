@@ -1,9 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.its_quran">
-   
-       <uses-permission android:name="android.permission.INTERNET"/>
 
-   <application
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+
+    <application
         android:label="إنه القرءان"
         android:icon="@mipmap/ic_launcher">
 

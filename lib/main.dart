@@ -12,6 +12,7 @@ import 'package:its_quran/screens/privacyPolicyScreen.dart';
 import 'package:its_quran/screens/categsScreen.dart';
 import 'package:its_quran/screens/sheikhScreen.dart';
 import 'package:its_quran/screens/termsOfUse.dart';
+import 'package:its_quran/screens/web_view_screen.dart';
 import 'package:provider/provider.dart';
 import 'screens/contactUs.dart';
 import 'screens/fullCategScreen.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
         locale: Locale("fa", "IR"),
         theme: ThemeData(
           primaryColor: Color(0xFF000E1F),
-          accentColor: Color(0xFFFFC710),
+          accentColor:  Color(0xFFFFC710),
           fontFamily: 'GE SS',
           textTheme: TextTheme(
             //For ListTile's title
@@ -127,6 +128,7 @@ class MyApp extends StatelessWidget {
           ContactScreen.routeName: (ctx) => ContactScreen(),
           SheikhScreen.routeName: (ctx) => SheikhScreen(),
           FullCategScreen.routeName: (ctx) => FullCategScreen(),
+          WebViewScreen.routeName:(ctx)=>WebViewScreen(),
         },
       ),
     );

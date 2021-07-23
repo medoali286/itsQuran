@@ -55,7 +55,7 @@ class AppDrawer extends StatelessWidget {
                   scale: 0.8,
                 ),
                 onTap: () =>
-                    Navigator.of(context).pushNamed(SheikhScreen.routeName),
+                    Navigator.of(context).pushNamed(SheikhScreen.routeName,arguments: "1"),
               ),
               ListTile(
                 title: Text('ش/ عمرو الشرقاوي'),
@@ -63,6 +63,9 @@ class AppDrawer extends StatelessWidget {
                   'assets/sharkawy.png',
                   scale: 0.8,
                 ),
+                onTap: (){
+                  Navigator.of(context).pushNamed(SheikhScreen.routeName,arguments: "2");
+                },
               ),
               ListTile(
                 title: Text('سياسة الخصوصية'),
@@ -91,15 +94,15 @@ class AppDrawer extends StatelessWidget {
                 onTap: () =>
                     Navigator.of(context).pushNamed(ContactScreen.routeName),
               ),
-              ListTile(
-                title: Text('نظام مداد كلاود'),
-                leading: Image.asset(
-                  'assets/midadcloud.png',
-                  scale: 3,
-                ),
-                onTap: () =>
-                    Navigator.of(context).pushNamed(MidadCloudSystem.routeName),
-              ),
+              // ListTile(
+              //   title: Text('نظام مداد كلاود'),
+              //   leading: Image.asset(
+              //     'assets/midadcloud.png',
+              //     scale: 3,
+              //   ),
+              //   onTap: () =>
+              //       Navigator.of(context).pushNamed(MidadCloudSystem.routeName),
+              // ),
             ],
           ),
         ),

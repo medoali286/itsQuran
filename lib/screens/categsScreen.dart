@@ -2,42 +2,49 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:its_quran/screens/templateScreen.dart';
+import 'package:its_quran/widgets/HomeScreenSection.dart';
 import 'package:its_quran/widgets/searchButton.dart';
 
 import 'fullCategScreen.dart';
 
 class CategsScreen extends StatelessWidget {
-  List<Map<String, String>> categs = [
+  List<Map<String, dynamic>> categs = [
     {
       "title": "الكل",
       "caption": "شاهد كل الأقسام",
       "img": "assets/3.0x/allsm.png",
+      "type":ItemType.video,
     },
     {
       "title": "مناشط الشيخ",
       "caption": "جميع مناشط الشيخ المضافة",
       "img": "assets/3.0x/fullsh.png",
+      "type":ItemType.video,
     },
     {
       "title": "فيديوهات",
       "caption": "جميع المقاطع المرئية",
       "img": "assets/2.0x/videos.png",
+      "type":ItemType.video,
     },
     {
       "title": "الكتب",
       "caption": "جميع الكتب والمراجع",
       "img": "assets/3.0x/booksm.png",
+      "type":ItemType.book,
     },
     {
       "title": "الصوتبات",
       "caption": "جميع المقاطع الصوتية",
       "img": "assets/3.0x/tasoundact.png",
+      "type":ItemType.audio,
     },
-    {
-      "title": "المقالات",
-      "caption": "جميع المقالات المضافة",
-      "img": "assets/3.0x/taartact.png",
-    },
+    // {
+    //   "title": "المقالات",
+    //   "caption": "جميع المقالات المضافة",
+    //   "img": "assets/3.0x/taartact.png",
+    //   "type":ItemType.article,
+    // },
   ];
   static String routeName = '/categsScreen';
   @override
@@ -49,7 +56,7 @@ class CategsScreen extends StatelessWidget {
         child: Center(
           child: GridView.builder(
             shrinkWrap: true,
-            itemCount: 6,
+            itemCount: 5,
             physics: BouncingScrollPhysics(),
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               childAspectRatio: 1,
@@ -60,7 +67,7 @@ class CategsScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () =>
-                    Navigator.of(context).pushNamed(FullCategScreen.routeName),
+                    Navigator.of(context).pushNamed(FullCategScreen.routeName,arguments: categs[index]["type"]),
                 child: Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

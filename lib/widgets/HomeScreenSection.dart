@@ -16,6 +16,8 @@ final List<dynamic>list;
 
   @override
   Widget build(BuildContext context) {
+
+
     return Column(
       children: <Widget>[
         categoryHeaderRow,
@@ -32,14 +34,57 @@ final List<dynamic>list;
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 5.0),
             itemBuilder: (c,index){
-              return MainListItem(
-                itemType: itemType,
-                title: list[index]["title"],
-                link: list[index]["link"],
 
 
-              );
-            },
+
+
+
+
+ // if(list[index][strType(itemType)]["data"]["link"]==null){
+ //   return Center(child: Container(height:146,width: 220 ,child: Icon(Icons.do_not_disturb,color: Colors.red,)),);
+ // }else{
+ //
+if(list[index][strType(itemType)]["data"]["link"]!=null){
+    return MainListItem(
+      itemType: itemType,
+      title: list[index]["title"],
+      link: list[index][strType(itemType)]["data"]["link"],
+      imgUrl: list[index]["medium_thumbnail"],
+
+
+    );
+  }else if(list[index][strType(itemType)]["data"]["attachments"]!=null){
+    return MainListItem(
+      itemType: itemType,
+      title: list[index]["title"],
+      link: list[index][strType(itemType)]["data"]["attachments"],
+
+      imgUrl: list[index]["medium_thumbnail"],
+
+
+    );
+  }else if(list[index][strType(itemType)]["data"]["embed_code"]!=null){
+  return MainListItem(
+    itemType: itemType,
+    title: list[index]["title"],
+      
+    link: extractLink(source: list[index][strType(itemType)]["data"]["embed_code"].toString()),
+
+    imgUrl: list[index]["medium_thumbnail"],
+
+
+  );
+
+
+}
+
+else{
+  return Center(child: Container(height:146,width: 220 ,child: Icon(Icons.do_not_disturb,color: Colors.red,)),);
+}
+
+
+              }
+            // },
             ),
           ),
 
@@ -52,4 +97,40 @@ final List<dynamic>list;
       ],
     );
   }
+  
+  
+ String strType(ItemType type){
+    String str;
+    switch(type){
+      
+      case ItemType.video:{str= "videos";}break;
+      case ItemType.book:{str="books";}break;
+      case ItemType.article:{ str="articles";}break;
+      case ItemType.audio:{str="audios";}break;
+      
+      
+       
+
+      
+    }
+    return str;
+ }
+
+
+String extractLink({@required String source}){
+
+
+
+  String text=source;
+  RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+  Iterable<RegExpMatch> matches = exp.allMatches(text);
+
+return text.substring(matches.last.start, matches.last.end);
+
+
+
+
+}
+
+  
 }
