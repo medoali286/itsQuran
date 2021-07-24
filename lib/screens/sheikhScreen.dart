@@ -54,9 +54,9 @@ class _SheikhScreenState extends State<SheikhScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String,String> map=ModalRoute.of(context).settings.arguments;
-    String author=map["author"];
-    String title=map["title"];
+    String title  =ModalRoute.of(context).settings.arguments;
+
+
 
 
     return SafeArea(
@@ -88,106 +88,106 @@ class _SheikhScreenState extends State<SheikhScreen> {
               isScrollable: true,
             ),
             actions: [
-              InkWell(
-                onTap: () {},
-                child: Image.asset('assets/filter.png'),
-              ),
-              Builder(
-                builder: (context) => InkWell(
-                  child: Image.asset('assets/filter.png'),
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      enableDrag: true,
-                      backgroundColor: Colors.transparent,
-                      builder: (_) {
-                        return StatefulBuilder(builder: (BuildContext context,
-                            StateSetter setState /*You can rename this!*/) {
-                          return Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20.0, horizontal: 10.0),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(30.0),
-                                topRight: Radius.circular(30.0),
-                              ),
-                            ),
-                            child: SingleChildScrollView(
-                              physics: BouncingScrollPhysics(),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Text(
-                                    'فرز بواسطة',
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
-                                  ),
-                                  Text(
-                                    'قم بعرض المحتوى حسب القسم',
-                                    style: Theme.of(context).textTheme.caption,
-                                  ),
-                                  SizedBox(
-                                    height: 20.0,
-                                  ),
-                                  _buildFilterListTile(0, 'كل المواد', 'allsm'),
-                                  _buildFilterListTile(
-                                      1, 'مناشط الشيخ', 'fullsh'),
-                                  _buildFilterListTile(2, 'الكتب', 'mnsm'),
-                                  _buildFilterListTile(
-                                      3, 'المثالات', 'taartact'),
-                                  _buildFilterListTile(
-                                      4, 'الصوتيات', 'tasoundact'),
-                                  _buildFilterListTile(
-                                      5, 'المرئيات', 'vidsm'),
-                                  SizedBox(
-                                    height: 10.0,
-                                  ),
-                                  Container(
-                                    width: double.infinity,
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 10.0),
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text('تطبيق',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .button
-                                              .copyWith(
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  fontWeight: FontWeight.bold)),
-                                      style: OutlinedButton.styleFrom(
-                                        padding: EdgeInsets.all(10.0),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        backgroundColor:
-                                            Theme.of(context).accentColor,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        });
-                      },
-                    );
-                  },
-                ),
-              )
+              // InkWell(
+              //   onTap: () {},
+              //   child: Image.asset('assets/filter.png'),
+              // ),
+              // Builder(
+              //   builder: (context) => InkWell(
+              //     child: Image.asset('assets/filter.png'),
+              //     onTap: () {
+              //       showModalBottomSheet(
+              //         context: context,
+              //         enableDrag: true,
+              //         backgroundColor: Colors.transparent,
+              //         builder: (_) {
+              //           return StatefulBuilder(builder: (BuildContext context,
+              //               StateSetter setState /*You can rename this!*/) {
+              //             return Container(
+              //               padding: EdgeInsets.symmetric(
+              //                   vertical: 20.0, horizontal: 10.0),
+              //               decoration: BoxDecoration(
+              //                 color: Colors.white,
+              //                 borderRadius: BorderRadius.only(
+              //                   topLeft: Radius.circular(30.0),
+              //                   topRight: Radius.circular(30.0),
+              //                 ),
+              //               ),
+              //               child: SingleChildScrollView(
+              //                 physics: BouncingScrollPhysics(),
+              //                 child: Column(
+              //                   mainAxisSize: MainAxisSize.min,
+              //                   children: <Widget>[
+              //                     Text(
+              //                       'فرز بواسطة',
+              //                       style:
+              //                           Theme.of(context).textTheme.bodyText2,
+              //                     ),
+              //                     Text(
+              //                       'قم بعرض المحتوى حسب القسم',
+              //                       style: Theme.of(context).textTheme.caption,
+              //                     ),
+              //                     SizedBox(
+              //                       height: 20.0,
+              //                     ),
+              //                     _buildFilterListTile(0, 'كل المواد', 'allsm'),
+              //                     _buildFilterListTile(
+              //                         1, 'مناشط الشيخ', 'fullsh'),
+              //                     _buildFilterListTile(2, 'الكتب', 'mnsm'),
+              //                     _buildFilterListTile(
+              //                         3, 'المثالات', 'taartact'),
+              //                     _buildFilterListTile(
+              //                         4, 'الصوتيات', 'tasoundact'),
+              //                     _buildFilterListTile(
+              //                         5, 'المرئيات', 'vidsm'),
+              //                     SizedBox(
+              //                       height: 10.0,
+              //                     ),
+              //                     Container(
+              //                       width: double.infinity,
+              //                       padding:
+              //                           EdgeInsets.symmetric(horizontal: 10.0),
+              //                       child: ElevatedButton(
+              //                         onPressed: () {
+              //                           Navigator.of(context).pop();
+              //                         },
+              //                         child: Text('تطبيق',
+              //                             style: Theme.of(context)
+              //                                 .textTheme
+              //                                 .button
+              //                                 .copyWith(
+              //                                     color: Theme.of(context)
+              //                                         .primaryColor,
+              //                                     fontWeight: FontWeight.bold)),
+              //                         style: OutlinedButton.styleFrom(
+              //                           padding: EdgeInsets.all(10.0),
+              //                           shape: RoundedRectangleBorder(
+              //                               borderRadius:
+              //                                   BorderRadius.circular(20.0)),
+              //                           backgroundColor:
+              //                               Theme.of(context).accentColor,
+              //                         ),
+              //                       ),
+              //                     ),
+              //                   ],
+              //                 ),
+              //               ),
+              //             );
+              //           });
+              //         },
+              //       );
+              //     },
+              //   ),
+              // )
             ],
           ),
           body: TabBarView(
             children: [
-              SheikhScreenTabContent(itemsType: ItemType.video,author: author,),
-              SheikhScreenTabContent(itemsType: ItemType.book,author: author,),
+              SheikhScreenTabContent(itemsType: ItemType.video,),
+              SheikhScreenTabContent(itemsType: ItemType.book,),
               // SheikhScreenTabContent(itemsType: ItemType.article),
               // SheikhScreenTabContent(itemsType: ItemType.article),
-              SheikhScreenTabContent(itemsType: ItemType.audio,author: author,),
+              SheikhScreenTabContent(itemsType: ItemType.audio,),
             ],
           ),
         ),

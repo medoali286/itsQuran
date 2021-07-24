@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:its_quran/Provider/home_provider.dart';
 import 'package:its_quran/services/get_api_data.dart';
 import 'package:its_quran/widgets/HomeScreenSection.dart';
 import 'package:its_quran/widgets/mainListItem.dart';
+import 'package:provider/provider.dart';
 
 class SheikhScreenTabContent extends StatelessWidget {
   final ItemType itemsType;
   final GetAPIData apiData=GetAPIData();
-  final String author;
 
-  SheikhScreenTabContent({this.itemsType=ItemType.article,this.author});
+
+
+  SheikhScreenTabContent({this.itemsType=ItemType.article});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class SheikhScreenTabContent extends StatelessWidget {
       physics: BouncingScrollPhysics(),
       child: Center(
         child: FutureBuilder(
-          future: apiData.getData(type:strType(itemsType) , pageNumber: "2", perPage: "30", author: author),
+          future: apiData.getData(type:strType(itemsType) , pageNumber: "2", perPage: "30", author: Provider.of<HomeProvider>(context).author),
           builder: (c,snapshot){
 
             if(!snapshot.hasData){
@@ -146,7 +149,7 @@ class SheikhScreenTabContent extends StatelessWidget {
     String text=source;
     RegExp exp = new RegExp(r'(?:(?:https?|ftp):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
     Iterable<RegExpMatch> matches = exp.allMatches(text);
-print(text.substring(matches.last.start, matches.last.end));
+// print(text.substring(matches.last.start, matches.last.end));
     return text.substring(matches.last.start, matches.last.end);
 
 

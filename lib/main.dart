@@ -26,13 +26,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
 
-  test("===========", ()async{
-    GetAPIData data=GetAPIData();
-  await  data.getAllData(type:"videos", pageNumber: "2", perPage: "30", author: "1");
 
-
-
-  });
 
 
   runApp(MyApp());

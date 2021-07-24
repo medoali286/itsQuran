@@ -40,9 +40,15 @@ class CategoryHeaderRow extends StatelessWidget {
           ),
           OutlinedButton.icon(
             onPressed: () {
-              Navigator.of(context).pushNamed(FullCategScreen.routeName,arguments:type);
+Map<String,dynamic> map=Map();
+map["type"]=type;
+map["title"]=title;
+Provider.of<HomeProvider>(context,listen: false).changeAuthor(author: "");
 
-              // Provider.of<HomeProvider>(context,listen: false).seeAll(type: type);
+              Navigator.of(context).pushNamed(FullCategScreen.routeName,arguments:map );
+
+
+
             },
             icon: Image.asset('assets/right.png'),
             label: Text('شاهد الكل',

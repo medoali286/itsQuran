@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:its_quran/Provider/home_provider.dart';
 import 'package:its_quran/screens/contactUs.dart';
 import 'package:its_quran/screens/midadCloudSystem.dart';
 import 'package:its_quran/screens/privacyPolicyScreen.dart';
 import 'package:its_quran/screens/categsScreen.dart';
 import 'package:its_quran/screens/sheikhScreen.dart';
 import 'package:its_quran/screens/termsOfUse.dart';
+import 'package:provider/provider.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
@@ -54,8 +56,12 @@ class AppDrawer extends StatelessWidget {
                   'assets/monem.png',
                   scale: 0.8,
                 ),
-                onTap: () =>
-                    Navigator.of(context).pushNamed(SheikhScreen.routeName,arguments:{"author": "1","title":"د/ أحمد عبد المنعم"}),
+                onTap: () {
+                  Provider.of<HomeProvider>(context,listen: false).changeAuthor(author: "1");
+                  Navigator.of(context).pushNamed(
+                      SheikhScreen.routeName, arguments: "د/ أحمد عبد المنعم");
+
+                }
               ),
               ListTile(
                 title: Text('ش/ عمرو الشرقاوي'),
@@ -64,7 +70,8 @@ class AppDrawer extends StatelessWidget {
                   scale: 0.8,
                 ),
                 onTap: (){
-                  Navigator.of(context).pushNamed(SheikhScreen.routeName,arguments: {"author": "2","title":"ش/ عمرو الشرقاوي"});
+                  Provider.of<HomeProvider>(context,listen: false).changeAuthor(author: "2");
+                  Navigator.of(context).pushNamed(SheikhScreen.routeName,arguments: "ش/ عمرو الشرقاوي");
                 },
               ),
               ListTile(

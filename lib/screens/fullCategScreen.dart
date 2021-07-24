@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:its_quran/Provider/home_provider.dart';
 import 'package:its_quran/screens/templateScreen.dart';
 import 'package:its_quran/widgets/HomeScreenSection.dart';
 import 'package:its_quran/widgets/searchButton.dart';
 import 'package:its_quran/widgets/sheikhScreenTabContentGridView.dart';
+import 'package:provider/provider.dart';
 
 class FullCategScreen extends StatefulWidget {
   static String routeName = '/fullCateg';
@@ -12,16 +14,14 @@ class FullCategScreen extends StatefulWidget {
 
 class _FullCategScreenState extends State<FullCategScreen> {
   List<bool> filters = [true, false, false];
+  String author = "";
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> map = ModalRoute.of(context).settings.arguments;
 
-
-
-       Map<dynamic,dynamic> map= ModalRoute.of(context).settings.arguments;
-       ItemType type=map["type"];
-      String title=map["title"];
-
+    String title = map["title"];
+    ItemType type = map["type"];
 
     return TemplateScreen(
       title: title,
@@ -35,12 +35,12 @@ class _FullCategScreenState extends State<FullCategScreen> {
                 context: context,
                 enableDrag: true,
                 backgroundColor: Colors.transparent,
-
                 builder: (_) {
                   return StatefulBuilder(builder: (BuildContext context,
                       StateSetter setState /*You can rename this!*/) {
                     return Container(
-                      padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 10.0),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 20.0, horizontal: 10.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
@@ -70,7 +70,7 @@ class _FullCategScreenState extends State<FullCategScreen> {
                                   filters[0] = true;
                                   filters[1] = false;
                                   filters[2] = false;
-                                  print('clicked');
+                                  author = "";
                                 });
                               },
                               title: Text(
@@ -96,6 +96,7 @@ class _FullCategScreenState extends State<FullCategScreen> {
                                   filters[0] = false;
                                   filters[1] = true;
                                   filters[2] = false;
+                                  author = "1";
                                 });
                               },
                               title: Text(
@@ -121,6 +122,8 @@ class _FullCategScreenState extends State<FullCategScreen> {
                                   filters[0] = false;
                                   filters[1] = false;
                                   filters[2] = true;
+
+                                  author = "2";
                                 });
                               },
                               title: Text(
@@ -145,6 +148,9 @@ class _FullCategScreenState extends State<FullCategScreen> {
                               padding: EdgeInsets.symmetric(horizontal: 10.0),
                               child: ElevatedButton(
                                 onPressed: () {
+                                  Provider.of<HomeProvider>(context,
+                                          listen: false)
+                                      .changeAuthor(author: author);
                                   Navigator.of(context).pop();
                                 },
                                 child: Text('تطبيق',
@@ -152,13 +158,16 @@ class _FullCategScreenState extends State<FullCategScreen> {
                                         .textTheme
                                         .button
                                         .copyWith(
-                                            color: Theme.of(context).primaryColor,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             fontWeight: FontWeight.bold)),
                                 style: OutlinedButton.styleFrom(
                                   padding: EdgeInsets.all(10.0),
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20.0)),
-                                  backgroundColor: Theme.of(context).accentColor,
+                                      borderRadius:
+                                          BorderRadius.circular(20.0)),
+                                  backgroundColor:
+                                      Theme.of(context).accentColor,
                                 ),
                               ),
                             ),
@@ -173,7 +182,9 @@ class _FullCategScreenState extends State<FullCategScreen> {
           ),
         )
       ],
-      body: SheikhScreenTabContent(itemsType: type,author: "1",),
+      body: SheikhScreenTabContent(
+        itemsType: type,
+      ),
     );
   }
 }

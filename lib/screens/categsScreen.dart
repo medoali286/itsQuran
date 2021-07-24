@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:its_quran/Provider/home_provider.dart';
 import 'package:its_quran/screens/templateScreen.dart';
 import 'package:its_quran/widgets/HomeScreenSection.dart';
 import 'package:its_quran/widgets/searchButton.dart';
+import 'package:provider/provider.dart';
 
 import 'fullCategScreen.dart';
 
@@ -66,8 +68,12 @@ class CategsScreen extends StatelessWidget {
             ),
             itemBuilder: (context, index) {
               return InkWell(
-                onTap: () =>
-                    Navigator.of(context).pushNamed(FullCategScreen.routeName,arguments: categs[index]),
+                onTap: () {
+                  Provider.of<HomeProvider>(context,listen: false).changeAuthor(author: "");
+                  Navigator.of(context).pushNamed(FullCategScreen.routeName,arguments:categs[index],);
+
+                },
+
                 child: Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
