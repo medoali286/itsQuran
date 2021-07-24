@@ -10,8 +10,8 @@ class GetAPIData {
       @required String perPage,
       @required String author}) async {
     Uri url = Uri.parse(
-        "https://cloudelib.midadedev.com/api/api-json/items/all/$type?page_number=$pageNumber&per_page=$perPage&author=$author&sort=title");
-    // print(url);
+        "https://cloudelib.midadedev.com/api/api-json/items/all/$type?page_number=$pageNumber&per_page=$perPage&author=$author&sort=title#");
+     // print(url);
     http.Response res = await http.get(url);
 
     // print(res.body.toString());

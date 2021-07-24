@@ -20,7 +20,7 @@ class SheikhScreenTabContent extends StatelessWidget {
       physics: BouncingScrollPhysics(),
       child: Center(
         child: FutureBuilder(
-          future: apiData.getData(type:strType(itemsType) , pageNumber: "2", perPage: "30", author: Provider.of<HomeProvider>(context).author),
+          future: apiData.getData(type:strType(itemsType) , pageNumber: "1", perPage: "30", author: Provider.of<HomeProvider>(context).author),
           builder: (c,snapshot){
 
             if(!snapshot.hasData){
@@ -122,16 +122,16 @@ class SheikhScreenTabContent extends StatelessWidget {
 
 
 
-        else{
-
-            widgetList.add(
-              Container(
-                  height: 220,
-                  width:146,
-                  child: Icon(Icons.do_not_disturb, color: Colors.red,)),
-            );
-
-        }
+        // else{
+        //
+        //     widgetList.add(
+        //       Container(
+        //           height: 220,
+        //           width:146,
+        //           child: Icon(Icons.do_not_disturb, color: Colors.grey,size:50 ,)),
+        //     );
+        //
+        // }
       }
 
 

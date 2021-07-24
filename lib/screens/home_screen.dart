@@ -77,7 +77,7 @@ final GetAPIData apiData=GetAPIData();
 //               ),
               FutureBuilder(
                 future:
-                    apiData.getData(pageNumber: "2", perPage: "10", author: "",type: "videos"),
+                    apiData.getData(pageNumber: "1", perPage: "10", author: "",type: "videos"),
                 builder: (c, snapShot) {
                   if (!snapShot.hasData) {
                     return Center(
@@ -101,7 +101,7 @@ final GetAPIData apiData=GetAPIData();
 
               FutureBuilder(
                 future:
-                apiData.getData(pageNumber: "2", perPage: "10", author: "",type: "audios"),
+                apiData.getData(pageNumber: "1", perPage: "10", author: "",type: "audios"),
                 builder: (c, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(
@@ -127,7 +127,7 @@ final GetAPIData apiData=GetAPIData();
 
               FutureBuilder(
                 future:
-                apiData.getData(pageNumber: "2", perPage: "10", author: "",type: "books"),
+                apiData.getData(pageNumber: "1", perPage: "10", author: "",type: "books"),
                 builder: (c, snapshot) {
                   if (!snapshot.hasData) {
                     return Center(
