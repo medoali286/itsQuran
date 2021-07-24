@@ -48,6 +48,21 @@ class HomeProvider extends ChangeNotifier {
 
 
 
+  String text="";
+
+  search({@required text}){
+    this.text=text;
+
+    notifyListeners();
+  }
+
+
+
+
+
+
+
+
 
 }
 

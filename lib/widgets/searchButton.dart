@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:its_quran/screens/search_screen.dart';
 class SearchButon extends StatelessWidget {
   const SearchButon({
     Key key,
@@ -8,7 +9,7 @@ class SearchButon extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Image.asset('assets/search.png'),
-      onTap: () => Navigator.of(context).pushNamed('/test'),
+      onTap: () => Navigator.of(context).pushNamed(SearchScreen.routeName),
     );
   }
 }

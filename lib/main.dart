@@ -10,16 +10,29 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:its_quran/screens/home_screen.dart';
 import 'package:its_quran/screens/privacyPolicyScreen.dart';
 import 'package:its_quran/screens/categsScreen.dart';
+import 'package:its_quran/screens/search_screen.dart';
 import 'package:its_quran/screens/sheikhScreen.dart';
 import 'package:its_quran/screens/termsOfUse.dart';
 import 'package:its_quran/screens/web_view_screen.dart';
+import 'package:its_quran/services/get_api_data.dart';
+import 'package:its_quran/widgets/HomeScreenSection.dart';
 import 'package:provider/provider.dart';
+import 'package:test/test.dart';
 import 'screens/contactUs.dart';
 import 'screens/fullCategScreen.dart';
 
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
+
+
+  test("===========", ()async{
+    GetAPIData data=GetAPIData();
+  await  data.getAllData(type:"videos", pageNumber: "2", perPage: "30", author: "1");
+
+
+
+  });
 
 
   runApp(MyApp());
@@ -129,6 +142,7 @@ class MyApp extends StatelessWidget {
           SheikhScreen.routeName: (ctx) => SheikhScreen(),
           FullCategScreen.routeName: (ctx) => FullCategScreen(),
           WebViewScreen.routeName:(ctx)=>WebViewScreen(),
+          SearchScreen.routeName:(ctx)=>SearchScreen(),
         },
       ),
     );

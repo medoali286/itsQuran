@@ -55,7 +55,7 @@ class AppDrawer extends StatelessWidget {
                   scale: 0.8,
                 ),
                 onTap: () =>
-                    Navigator.of(context).pushNamed(SheikhScreen.routeName,arguments: "1"),
+                    Navigator.of(context).pushNamed(SheikhScreen.routeName,arguments:{"author": "1","title":"د/ أحمد عبد المنعم"}),
               ),
               ListTile(
                 title: Text('ش/ عمرو الشرقاوي'),
@@ -64,7 +64,7 @@ class AppDrawer extends StatelessWidget {
                   scale: 0.8,
                 ),
                 onTap: (){
-                  Navigator.of(context).pushNamed(SheikhScreen.routeName,arguments: "2");
+                  Navigator.of(context).pushNamed(SheikhScreen.routeName,arguments: {"author": "2","title":"ش/ عمرو الشرقاوي"});
                 },
               ),
               ListTile(

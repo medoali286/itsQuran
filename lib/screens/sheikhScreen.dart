@@ -54,7 +54,9 @@ class _SheikhScreenState extends State<SheikhScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String author=ModalRoute.of(context).settings.arguments;
+    Map<String,String> map=ModalRoute.of(context).settings.arguments;
+    String author=map["author"];
+    String title=map["title"];
 
 
     return SafeArea(
@@ -66,7 +68,7 @@ class _SheikhScreenState extends State<SheikhScreen> {
             leading: BackArrow(),
             centerTitle: true,
             title: Text(
-              "ش/ أحمد عبد المنعم",
+              title,
               style: Theme.of(context).appBarTheme.textTheme.headline1,
             ),
             bottom: TabBar(

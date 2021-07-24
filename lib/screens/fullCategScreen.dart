@@ -17,11 +17,14 @@ class _FullCategScreenState extends State<FullCategScreen> {
   Widget build(BuildContext context) {
 
 
-    ItemType type= ModalRoute.of(context).settings.arguments;
+
+       Map<dynamic,dynamic> map= ModalRoute.of(context).settings.arguments;
+       ItemType type=map["type"];
+      String title=map["title"];
 
 
     return TemplateScreen(
-      title: 'العنوان من المودال راوت',
+      title: title,
       actions: [
         SearchButon(),
         Builder(

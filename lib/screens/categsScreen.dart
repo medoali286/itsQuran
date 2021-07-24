@@ -34,7 +34,7 @@ class CategsScreen extends StatelessWidget {
       "type":ItemType.book,
     },
     {
-      "title": "الصوتبات",
+      "title": "الصوتيات",
       "caption": "جميع المقاطع الصوتية",
       "img": "assets/3.0x/tasoundact.png",
       "type":ItemType.audio,
@@ -67,7 +67,7 @@ class CategsScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () =>
-                    Navigator.of(context).pushNamed(FullCategScreen.routeName,arguments: categs[index]["type"]),
+                    Navigator.of(context).pushNamed(FullCategScreen.routeName,arguments: categs[index]),
                 child: Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
